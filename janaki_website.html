@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Janaki Birthday Website</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #fef6f9;
+      color: #333;
+    }
+    section {
+      display: none;
+      height: 100vh;
+      text-align: center;
+      padding: 50px;
+      box-sizing: border-box;
+    }
+    section.active {
+      display: block;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    header {
+      background: #ff6fa8;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .gallery img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 12px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 20px;
+      background: #ff6fa8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>Happy Birthday Janaki 🎉</header>
+
+  <!-- Page 1: Cover -->
+  <section class="active" id="page1">
+    <h2>Welcome Janaki!</h2>
+    <p>This website is specially made for your birthday 🎂</p>
+    <button class="btn" onclick="nextPage(2)">Next</button>
+  </section>
+
+  <!-- Page 2: About You -->
+  <section id="page2">
+    <h2>About You</h2>
+    <p>Janaki, you are amazing and loved by everyone! 💖</p>
+    <button class="btn" onclick="nextPage(1)">Previous</button>
+    <button class="btn" onclick="nextPage(3)">Next</button>
+  </section>
+
+  <!-- Page 3: Photo Gallery -->
+  <section id="page3">
+    <h2>Photo Gallery</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/200x200.png?text=Photo+1" alt="Photo 1">
+      <img src="https://via.placeholder.com/200x200.png?text=Photo+2" alt="Photo 2">
+      <img src="https://via.placeholder.com/200x200.png?text=Photo+3" alt="Photo 3">
+    </div>
+    <button class="btn" onclick="nextPage(2)">Previous</button>
+    <button class="btn" onclick="nextPage(4)">Next</button>
+  </section>
+
+  <!-- Page 4: Messages -->
+  <section id="page4">
+    <h2>Birthday Wishes</h2>
+    <p>🎉 "Happy Birthday Janaki! Wishing you a day full of love and joy!"</p>
+    <p>🎉 "You are amazing! Have a fantastic birthday!"</p>
+    <button class="btn" onclick="nextPage(3)">Previous</button>
+    <button class="btn" onclick="nextPage(5)">Next</button>
+  </section>
+
+  <!-- Page 5: Fun Quiz -->
+  <section id="page5">
+    <h2>Fun Quiz</h2>
+    <p>What's Janaki's favorite color? 💖</p>
+    <p>Answer: Pink</p>
+    <button class="btn" onclick="nextPage(4)">Previous</button>
+    <button class="btn" onclick="nextPage(6)">Next</button>
+  </section>
+
+  <!-- Page 6: Countdown -->
+  <section id="page6">
+    <h2>Birthday Countdown</h2>
+    <p id="countdown"></p>
+    <button class="btn" onclick="nextPage(5)">Previous</button>
+    <button class="btn" onclick="nextPage(7)">Next</button>
+  </section>
+
+  <!-- Page 7: Ending Page -->
+  <section id="page7">
+    <h2>Thank You!</h2>
+    <p>Hope you loved this surprise, Janaki! ❤️</p>
+    <button class="btn" onclick="nextPage(6)">Previous</button>
+  </section>
+
+  <script>
+    function nextPage(pageNumber) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById('page' + pageNumber).classList.add('active');
+    }
+
+    // Countdown Timer
+    const countdownElement = document.getElementById('countdown');
+    const birthday = new Date(new Date().getFullYear(), 0, 21); // Jan 21
+    function updateCountdown() {
+      const now = new Date();
+      const diff = birthday - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      countdownElement.innerText = days >= 0 ? days + ' days until your birthday!' : 'Happy Birthday! 🎉';
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
